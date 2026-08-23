@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Secrets
+.env
+.env.*
+
+# Wireshark captures
+*.pcap
+*.pcapng
+*.cap
+
+# Generated capture directories
+captures/
+capture/
