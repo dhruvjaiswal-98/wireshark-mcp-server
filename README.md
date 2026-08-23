@@ -1,36 +1,54 @@
 # Wireshark MCP Server
 
 > An MCP server that enables AI assistants to interact with Wireshark's
-> command-line tools (`tshark`, `dumpcap`, `capinfos`, and `mergecap`)
-> for automated network traffic capture and analysis.
+> command-line tools for automated network traffic capture and analysis.
 
-## 🚀 Overview
+[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/)
+[![MCP](https://img.shields.io/badge/Protocol-MCP-purple.svg)](https://modelcontextprotocol.io/)
+[![Wireshark](https://img.shields.io/badge/Wireshark-tshark-blue.svg)](https://www.wireshark.org/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-Wireshark is one of the most widely used network protocol analyzers.
+## Overview
 
-This project connects Wireshark's CLI tools to an AI assistant through
-the Model Context Protocol (MCP).
+Wireshark MCP Server connects AI assistants with Wireshark's command-line
+analysis tools including `tshark`, `dumpcap`, `capinfos`, and `mergecap`.
 
-Instead of manually running multiple `tshark` commands, filtering packets,
-opening PCAP files, and interpreting protocol statistics, an AI assistant
-can interact with these capabilities through structured MCP tools.
+The goal is to allow an AI assistant to perform network traffic analysis
+through structured MCP tools instead of requiring the user to manually
+execute multiple Wireshark commands.
 
 ### Example workflow
 
-AI Assistant
-     ↓
-MCP Protocol
-     ↓
-Wireshark MCP Server
-     ↓
-tshark / dumpcap / capinfos / mergecap
-     ↓
-Network Interface / PCAP
-     ↓
-Structured analysis
-     ↓
-AI-generated explanation
-
+┌──────────────────────┐
+│     AI Assistant     │
+│  Claude Desktop      │
+└──────────┬───────────┘
+           │
+           │ MCP / JSON-RPC
+           ▼
+┌──────────────────────┐
+│  Wireshark MCP       │
+│       Server         │
+│       Python         │
+└──────────┬───────────┘
+           │
+     ┌─────┼──────────────┐
+     │     │              │
+     ▼     ▼              ▼
+ tshark dumpcap        capinfos
+     │     │              │
+     └─────┼──────────────┘
+           ▼
+   ┌─────────────────┐
+   │ PCAP / Network  │
+   │ Traffic         │
+   └─────────────────┘
+           │
+           ▼
+   Structured Results
+           │
+           ▼
+     AI Analysis
 ---
 
 ## 🎯 Project Goals
@@ -165,6 +183,25 @@ Example:
   }
 }
 Restart Claude Desktop after changing the configuration.
+
+
+```
+
+### 5. Add a "How It Works" section
+
+This is particularly important for **your cybersecurity portfolio**.
+
+```markdown
+## 🔄 How It Works
+
+1. The user sends a network-analysis request to the AI assistant.
+2. The AI assistant determines which MCP tool is required.
+3. The MCP client sends a structured request to the Wireshark MCP server.
+4. The MCP server validates the requested operation.
+5. The server executes the appropriate Wireshark CLI utility.
+6. Wireshark processes the packet capture or live traffic.
+7. The MCP server converts the result into structured output.
+8. The AI assistant interprets the result and provides an explanation.
 
 ```
 ### 🧪 Example Prompts
