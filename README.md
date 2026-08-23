@@ -158,6 +158,8 @@ The project aims to provide an AI-accessible interface for:
 
 ## 💻 Installation
 
+```
+
 ### 1. Clone the repository
 
 ```bash
