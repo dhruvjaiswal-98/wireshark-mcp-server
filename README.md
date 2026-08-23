@@ -8,6 +8,15 @@
 [![Wireshark](https://img.shields.io/badge/Wireshark-tshark-blue.svg)](https://www.wireshark.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
+## 📚 Documentation
+
+### Lab Report
+
+A detailed report covering the installation, configuration,
+troubleshooting, and verification of the Wireshark MCP Server.
+
+📄 [Read the MCP Wireshark Lab Report](docs/MCP_Wireshark_Lab_Report.pdf)
+
 ## Overview
 
 Wireshark MCP Server connects AI assistants with Wireshark's command-line
