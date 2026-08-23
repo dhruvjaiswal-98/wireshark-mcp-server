@@ -17,38 +17,52 @@ The goal is to allow an AI assistant to perform network traffic analysis
 through structured MCP tools instead of requiring the user to manually
 execute multiple Wireshark commands.
 
-### Example workflow
+## 🔄 How It Works
 
-┌──────────────────────┐
-│     AI Assistant     │
-│  Claude Desktop      │
-└──────────┬───────────┘
-           │
-           │ MCP / JSON-RPC
-           ▼
-┌──────────────────────┐
-│  Wireshark MCP       │
-│       Server         │
-│       Python         │
-└──────────┬───────────┘
-           │
-     ┌─────┼──────────────┐
-     │     │              │
-     ▼     ▼              ▼
- tshark dumpcap        capinfos
-     │     │              │
-     └─────┼──────────────┘
-           ▼
-   ┌─────────────────┐
-   │ PCAP / Network  │
-   │ Traffic         │
-   └─────────────────┘
-           │
-           ▼
-   Structured Results
-           │
-           ▼
-     AI Analysis
+The Wireshark MCP Server acts as a bridge between an AI assistant and
+Wireshark's command-line analysis tools.
+
+```text
+┌───────────────────────┐
+│     AI Assistant      │
+│   Claude Desktop      │
+└───────────┬───────────┘
+            │
+            │ MCP / JSON-RPC
+            ▼
+┌───────────────────────┐
+│  Wireshark MCP Server │
+│        Python         │
+└───────────┬───────────┘
+            │
+            ▼
+┌────────────────────────────────────────┐
+│       Wireshark CLI Tools              │
+│                                        │
+│ tshark │ dumpcap │ capinfos │ mergecap │
+└───────────┬────────────────────────────┘
+            │
+            ▼
+┌─────────────────────────────────────┐
+│       Network / PCAP / PCAPNG       │
+│                                     │
+│ Live Traffic     Capture Files      │
+└───────────┬─────────────────────────┘
+            │
+            ▼
+┌───────────────────────┐
+│   Structured Results  │
+│   Packet / Protocol   │
+│   Endpoint / Stream   │
+└───────────┬───────────┘
+            │
+            ▼
+┌───────────────────────┐
+│     AI Analysis       │
+│ Explanation / Summary │
+│ Troubleshooting       │
+└───────────────────────┘
+
 ---
 
 ## 🎯 Project Goals
